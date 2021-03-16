@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +8,8 @@ namespace ShootingDice
     {
         static void Main(string[] args)
         {
+
+
             Player player1 = new Player();
             player1.Name = "Bob";
 
@@ -32,8 +34,29 @@ namespace ShootingDice
 
             Console.WriteLine("-------------------");
 
+            SmackTalkingPlayer person = new SmackTalkingPlayer("\"Come at me bro\"");
+            person.Name = "Sara SmackTalk";
+            // person.Play(player2);
+            OneHigherPlayer cheater = new OneHigherPlayer();
+            cheater.Name = "Peter Peter";
+            // cheater.Play(player1);
+            HumanPlayer hancho = new HumanPlayer();
+            hancho.Name = "Head Hancho";
+            // hancho.Play(player1);
+            CreativeSmackTalkingPlayer Karen = new CreativeSmackTalkingPlayer();
+            Karen.Name = "Karen NoCares";
+            // Karen.Play(player1);
+            SoreLoserPlayer Ted = new SoreLoserPlayer();
+            Ted.Name = "Ted";
+            // Ted.Play(player1);
+            SoreLoserUpperHalfPlayer Tony = new SoreLoserUpperHalfPlayer();
+            Tony.Name = "Tony";
+            // Tony.Play(player1);
+
+
+
             List<Player> players = new List<Player>() {
-                player1, player2, player3, large
+                player1, player2, Tony, player3, large, person, cheater, hancho, Karen, Ted,
             };
 
             PlayMany(players);
@@ -66,6 +89,23 @@ namespace ShootingDice
                 Player player1 = shuffledPlayers[i];
                 Player player2 = shuffledPlayers[i + 1];
                 player1.Play(player2);
+
+                try
+                {
+                    player1.Play(player2);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message == "I never win!!! Whaaa!")
+                    {
+                        Console.WriteLine("Ted is THE WORST");
+                        continue;
+                    }
+                    if (ex.Message == "UGG this game is rigged!")
+                    {
+                        Console.WriteLine("I quit!!!");
+                    }
+                }
             }
         }
     }
